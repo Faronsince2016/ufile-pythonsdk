@@ -29,6 +29,7 @@ class ProjectManager(BaseUAccount):
 
         @param projectname: string 类型，请求参数
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码，ProjectId:所创建项目的ID（目前返回的不对，已内部沟通，最迟下周二修复（2018.8.20））}
         """
 
         payload = dict()
@@ -47,6 +48,17 @@ class ProjectManager(BaseUAccount):
         获取项目列表
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码，ProjectCount: 项目总数，ProjectSet: array, 项目列表}
+        PorjectSet: [{
+            ProjectId: 项目ID
+            ProjectName: 项目名称
+            ParentId: 父项目ID
+            ParentName: 父项目名称
+            CreateTime: 创建时间（unix时间戳)
+            IsDefault: 是否为默认项目 bool
+            ResourceCount: 项目下资源数量
+            MemberCount: 项目下成员数量 
+        }...]
         """
 
         payload = dict()
@@ -63,6 +75,7 @@ class ProjectManager(BaseUAccount):
         @param projectId string 项目ID
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码}
         """
 
         payload = dict()
@@ -86,6 +99,7 @@ class ProjectManager(BaseUAccount):
         @param isFinance string 是否为财务人员（可以申请开发票等，默认为'false'）
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码}
         """
 
         payload = dict()
@@ -110,6 +124,7 @@ class ProjectManager(BaseUAccount):
         @param memberEmail string 被添加账号的邮箱 
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码}
         """
         payload = dict()
         payload['Action'] = 'AddMemberToProject'
@@ -132,6 +147,23 @@ class ProjectManager(BaseUAccount):
         @param limit string 请求数量 默认200
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码, TotalCount:成员总数，MemberSet: 成员列表}
+        MemberSet:[{
+            MemberEmail: 成员邮箱
+            MemberPhone: 成员手机
+            MemberName: 成员名字
+            MemberPosition: 成员地址
+            MemberQQ：成员QQ
+            PublickKey: 公钥
+            LastRegionId:机房ID
+            DefaultProjectId: 默认项目
+            LastLogin: 最近一次登录时间
+            Created: 创建时间
+            State: 状态
+            IsAdmin: 是否主账号
+            IfFinance: 是否有财务权限
+            ProjectSet: 项目列表 [{ProjectName:项目名，ProjectId:项目ID, CharacterId:角色ID}]
+        }]
         """
         payload = dict()
         payload['Action'] = 'DescribeMemberList'
@@ -153,6 +185,7 @@ class ProjectManager(BaseUAccount):
         @param memberEmail string 被移除账号的邮箱
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码}
         """
         payload = dict()
         payload['Action'] = 'RemoveMemberFromProject'
@@ -172,6 +205,7 @@ class ProjectManager(BaseUAccount):
         @param memberEmail string 被注销账号的邮箱
 
         @return jsonbody: 如果http状态码不为200 或者RetCode不为0，则抛出异常；否则返回dict类型
+        @return dict {Action: 操作名称，RetCode: 返回码}
         """
         payload = dict()
         payload['Action'] = 'TerminateMember'
