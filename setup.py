@@ -16,6 +16,7 @@ except ImportError:
 packages = [
     'ucloud',
     'ucloud.ufile',
+    'ucloud.uaccount',
 ]
 
 

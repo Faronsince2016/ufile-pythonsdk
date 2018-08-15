@@ -1,10 +1,9 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.2
 Name: ucloud
-Version: 2.0.1
+Version: 2.0.2
 Summary: UCloud UFile Python SDK
 Home-page: UNKNOWN
-Author: UNKNOWN
-Author-email: David.li@ucloud.cn
+Maintainer-email: David.li@ucloud.cn
 License: UNKNOWN
 Description: UNKNOWN
 Platform: any
